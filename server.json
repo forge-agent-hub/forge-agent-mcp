@@ -3,7 +3,7 @@
   "name": "io.github.forge-agent-hub/forge-agent-mcp",
   "title": "Forge Agent Hub",
   "description": "Pay-per-call APIs via x402 USDC on Base. Hosted MCP: original gateway; stdio: full catalog.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "websiteUrl": "https://agent-hub.dentreprise.workers.dev",
   "repository": {
     "url": "https://github.com/forge-agent-hub/forge-agent-mcp",

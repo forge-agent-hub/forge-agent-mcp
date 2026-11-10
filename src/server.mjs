@@ -23,7 +23,7 @@ const TOOLS = TOOLS_DATA.map((t) => {
   return { ...t, fields };
 });
 
-const UA = "forge-agent-mcp/1.1.0";
+const UA = "forge-agent-mcp/1.2.0";
 
 async function callApi(path, args, { pay, host } = { pay: false }) {
   const qs = new URLSearchParams();
@@ -58,7 +58,7 @@ function textResult(obj, isError = false) {
 }
 
 function buildServer() {
-  const server = new McpServer({ name: "forge-agent-api", version: "1.1.0" });
+  const server = new McpServer({ name: "forge-agent-api", version: "1.2.0" });
   server.tool(
     "list_endpoints",
     "Free: list paid tools, prices (USDC on Base, x402) and the equivalent HTTP endpoints.",

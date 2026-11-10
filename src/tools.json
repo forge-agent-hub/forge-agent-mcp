@@ -1254,6 +1254,114 @@
     ]
   },
   {
+    "name": "uk_company",
+    "path": "/api/uk-company",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "UK company register (official Companies House API): search by name, or lookup by company number with profile (status, type, incorporation/dissolution, SIC codes, registered office, previous names), officer counts (active/resigned) and filing status (accounts and confirmation statement due/overdue), insolvency, liquidation and charges flags.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "company_number",
+        "type": "string",
+        "desc": "8-char company number",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "desc": "Name search (alternative)",
+        "required": false
+      },
+      {
+        "name": "max",
+        "type": "string",
+        "desc": "1-20",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "kyb_check_uk",
+    "path": "/api/kyb-check-uk",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "One-call KYB for a UK company (company number or name): Companies House profile, officers and filing status, insolvency/liquidation flags, plus sanctions screening (US CSL/OFAC, EU, FR, UK) of the registered name, with a pass/review/fail verdict and flags.",
+    "price": "0.01",
+    "fields": [
+      {
+        "name": "company_number",
+        "type": "string",
+        "desc": "8-char company number",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "desc": "Name (alternative; best match is checked)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "eu_carbon_customs",
+    "path": "/api/eu-carbon-customs",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "EU CBAM (carbon border adjustment) default embedded emissions for a CN/TARIC code and country of origin, from the official Commission default-values file: direct, indirect and total tCO2e per tonne, production route, year mark-up, and optional embedded emissions and certificate cost for a shipment (tonnes, EUR price).",
+    "price": "0.003",
+    "fields": [
+      {
+        "name": "cn",
+        "type": "string",
+        "desc": "CN/TARIC code 4-10 digits",
+        "required": true
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "desc": "Origin country name or ISO alpha-2",
+        "required": true
+      },
+      {
+        "name": "year",
+        "type": "string",
+        "desc": "2026+",
+        "required": false
+      },
+      {
+        "name": "tonnes",
+        "type": "string",
+        "desc": "Shipment mass in tonnes (optional)",
+        "required": false
+      },
+      {
+        "name": "price_eur",
+        "type": "string",
+        "desc": "CBAM certificate price EUR/tCO2e (optional)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "kyb_check_eu",
+    "path": "/api/kyb-check-eu",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "One-call KYB for any EU company by VAT number: VIES validity with registered name/address, sanctions screening (US CSL/OFAC, EU, FR, UK) of the name, GLEIF LEI candidates, plus national register data for France (Sirene + BODACC proceedings) and Finland (PRH), with a pass/review/fail verdict.",
+    "price": "0.01",
+    "fields": [
+      {
+        "name": "vat",
+        "type": "string",
+        "desc": "EU VAT number with country prefix",
+        "required": true
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "desc": "Company name if VIES does not publish it",
+        "required": false
+      }
+    ]
+  },
+  {
     "name": "kyb_check_fr",
     "path": "/api/kyb-check-fr",
     "host": "https://forge-tools.dentreprise.workers.dev",
@@ -1272,7 +1380,7 @@
     "name": "supplier_due_diligence",
     "path": "/api/supplier-due-diligence",
     "host": "https://forge-tools.dentreprise.workers.dev",
-    "desc": "Supplier due diligence for any company name (optionally VAT number and country): VIES VAT check, GLEIF LEI candidates with entity and registration status, and sanctions screening (OFAC, EU, FR, UK), with a pass/review/fail verdict and flags.",
+    "desc": "Supplier due diligence for any company name (optionally VAT number and country): VIES VAT check, UK Companies House profile when country=GB, GLEIF LEI candidates with entity and registration status, and sanctions screening (OFAC, EU, FR, UK), with a pass/review/fail verdict and flags.",
     "price": "0.01",
     "fields": [
       {

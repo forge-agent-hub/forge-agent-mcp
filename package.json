@@ -1,6 +1,6 @@
 {
   "name": "forge-agent-mcp",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "MCP server wrapping Forge Agent Hub x402 endpoints on both API hosts (stdio and Streamable HTTP).",
   "type": "module",
   "bin": {
