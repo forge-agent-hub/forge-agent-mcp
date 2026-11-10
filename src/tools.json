@@ -558,7 +558,7 @@
     "name": "sec_financials",
     "path": "/api/sec-financials",
     "host": "https://forge-tools.dentreprise.workers.dev",
-    "desc": "US public company financial facts from SEC EDGAR XBRL (by ticker or CIK): revenue, net income, operating income, gross profit, diluted EPS, assets, liabilities, equity, cash, operating cash flow, long-term debt, shares outstanding — last 1-5 fiscal years plus latest quarter, with form, filing date and accession; plus recent 10-K/10-Q/8-K filings. Any raw us-gaap tag also accepted.",
+    "desc": "US public company financial facts from SEC EDGAR XBRL (by ticker or CIK): revenue, net income, operating income, gross profit, diluted EPS, assets, liabilities, equity, cash, operating cash flow, long-term debt, shares outstanding \u2014 last 1-5 fiscal years plus latest quarter, with form, filing date and accession; plus recent 10-K/10-Q/8-K filings. Any raw us-gaap tag also accepted.",
     "price": "0.005",
     "fields": [
       {
@@ -582,7 +582,7 @@
       {
         "name": "metrics",
         "type": "string",
-        "desc": "Comma list: revenue,net_income,… or us-gaap:Tag",
+        "desc": "Comma list: revenue,net_income,\u2026 or us-gaap:Tag",
         "required": false
       }
     ]
@@ -828,7 +828,7 @@
     "name": "phone_parse",
     "path": "/api/phone-parse",
     "host": "https://forge-tools.dentreprise.workers.dev",
-    "desc": "Phone number parsing and validation to E.164 (libphonenumber numbering plans): validity, country, calling code, type (mobile, fixed line, toll-free…), national/international formats, tel: URI. Up to 50 numbers. No carrier lookup, no call.",
+    "desc": "Phone number parsing and validation to E.164 (libphonenumber numbering plans): validity, country, calling code, type (mobile, fixed line, toll-free\u2026), national/international formats, tel: URI. Up to 50 numbers. No carrier lookup, no call.",
     "price": "0.001",
     "fields": [
       {
@@ -897,7 +897,7 @@
     "name": "wikidata_entity",
     "path": "/api/wikidata-entity",
     "host": "https://forge-tools.dentreprise.workers.dev",
-    "desc": "Wikidata entity lookup by Q-id or search text: label, description, aliases in a chosen language, key claims (instance of, country, coordinates, inception, website, population, HQ, founders, industry, identifiers such as LEI/ticker/ISNI…) with resolved labels, Wikipedia link.",
+    "desc": "Wikidata entity lookup by Q-id or search text: label, description, aliases in a chosen language, key claims (instance of, country, coordinates, inception, website, population, HQ, founders, industry, identifiers such as LEI/ticker/ISNI\u2026) with resolved labels, Wikipedia link.",
     "price": "0.002",
     "fields": [
       {
@@ -990,7 +990,7 @@
     "name": "fr_school_calendar",
     "path": "/api/fr-school-calendar",
     "host": "https://forge-tools.dentreprise.workers.dev",
-    "desc": "French school holidays (calendrier scolaire, Éducation nationale) by school year and zone A/B/C (or overseas/Corsica), with académies, start/end dates, and an optional date test (is this date a school holiday, and where).",
+    "desc": "French school holidays (calendrier scolaire, \u00c9ducation nationale) by school year and zone A/B/C (or overseas/Corsica), with acad\u00e9mies, start/end dates, and an optional date test (is this date a school holiday, and where).",
     "price": "0.001",
     "fields": [
       {
@@ -1014,7 +1014,7 @@
       {
         "name": "academie",
         "type": "string",
-        "desc": "Académie name filter",
+        "desc": "Acad\u00e9mie name filter",
         "required": false
       }
     ]
@@ -1050,7 +1050,7 @@
     "name": "sanctions_check",
     "path": "/api/sanctions-check",
     "host": "https://forge-tools.dentreprise.workers.dev",
-    "desc": "Sanctions screening of a person, company or vessel name against the US Consolidated Screening List (OFAC SDN with aliases plus other Treasury, Commerce BIS and State lists), the EU consolidated financial sanctions list (FSF), the French national asset-freeze register (DG Trésor) and the UK sanctions list (FCDO). Fuzzy Jaro-Winkler token matching with score, programmes, DOB; lists refreshed daily.",
+    "desc": "Sanctions screening of a person, company or vessel name against the US Consolidated Screening List (OFAC SDN with aliases plus other Treasury, Commerce BIS and State lists), the EU consolidated financial sanctions list (FSF), the French national asset-freeze register (DG Tr\u00e9sor) and the UK sanctions list (FCDO). Fuzzy Jaro-Winkler token matching with score, programmes, DOB; lists refreshed daily.",
     "price": "0.005",
     "fields": [
       {
@@ -1089,7 +1089,7 @@
     "name": "fr_legal_status",
     "path": "/api/fr-legal-status",
     "host": "https://forge-tools.dentreprise.workers.dev",
-    "desc": "French company legal status by SIREN/SIRET: Sirene administrative status (active/ceased, closure date, legal form, NAF, head office) plus BODACC collective proceedings (sauvegarde, redressement, liquidation judiciaire, clôture) with latest stage, ongoing flag and risk level.",
+    "desc": "French company legal status by SIREN/SIRET: Sirene administrative status (active/ceased, closure date, legal form, NAF, head office) plus BODACC collective proceedings (sauvegarde, redressement, liquidation judiciaire, cl\u00f4ture) with latest stage, ongoing flag and risk level.",
     "price": "0.003",
     "fields": [
       {
@@ -1203,7 +1203,7 @@
     "name": "no_company",
     "path": "/api/no-company",
     "host": "https://forge-tools.dentreprise.workers.dev",
-    "desc": "Norwegian company register (Brønnøysundregistrene) by org number or name: legal form, registration and founding dates, VAT registration and VAT number, bankruptcy, liquidation and forced-dissolution flags, employees, industry, address, website.",
+    "desc": "Norwegian company register (Br\u00f8nn\u00f8ysundregistrene) by org number or name: legal form, registration and founding dates, VAT registration and VAT number, bankruptcy, liquidation and forced-dissolution flags, employees, industry, address, website.",
     "price": "0.002",
     "fields": [
       {
@@ -1402,5 +1402,21 @@
         "required": false
       }
     ]
+  },
+  {
+    "name": "playbook_x402_seller",
+    "path": "/api/playbook-x402-seller",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Playbook: become an x402 seller on Cloudflare Workers. Concise guide from Forge Agent Hub's own Worker paywall. ?demo=1 returns the TOC and an excerpt, unpaid.",
+    "price": "3",
+    "fields": []
+  },
+  {
+    "name": "playbook_mcp_publish",
+    "path": "/api/playbook-mcp-publish",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Playbook: build and publish an MCP server to the official registry. Concise guide from Forge Agent Hub's own publish. ?demo=1 returns the TOC and an excerpt, unpaid.",
+    "price": "3",
+    "fields": []
   }
 ]
