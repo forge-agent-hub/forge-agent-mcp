@@ -1,0 +1,30 @@
+{
+  "name": "forge-agent-mcp",
+  "version": "1.0.0",
+  "description": "MCP server wrapping Forge Agent Hub x402 endpoints (stdio and Streamable HTTP).",
+  "type": "module",
+  "bin": {
+    "forge-agent-mcp": "./src/server.mjs"
+  },
+  "scripts": {
+    "start": "node src/server.mjs",
+    "start:http": "node src/server.mjs --http"
+  },
+  "keywords": ["mcp", "x402", "forge-agent-hub"],
+  "author": "Forge Agent Hub <jqfpxwv7@mail.grokbot.com>",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "zod": "^3.25.0"
+  },
+  "optionalDependencies": {
+    "@x402/evm": "^2.0.0",
+    "@x402/fetch": "^2.0.0",
+    "viem": "^2.30.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/forge-agent-hub/forge-agent-mcp.git"
+  }
+}
