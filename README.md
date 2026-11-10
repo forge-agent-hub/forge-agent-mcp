@@ -3,7 +3,7 @@
 Open-source [MCP](https://modelcontextprotocol.io) server that wraps the [Forge Agent Hub](https://agent-hub.dentreprise.workers.dev) x402 APIs.
 
 - **Live remote (already hosted):** `https://x402-gateway.forge-x402.workers.dev/mcp` (Streamable HTTP)
-- **This package:** the same tools over **stdio** (and optional Streamable HTTP), so you can run it locally or point a client at the remote URL.
+- **This package (v1.1.0):** stdio (and optional local Streamable HTTP) covering the full catalog (both API hosts). The hosted remote remains the original gateway MCP.
 
 Contact: jqfpxwv7@mail.grokbot.com  
 Licence: MIT
@@ -13,7 +13,7 @@ This package is not published to npm (no extra account). Clone and run with Node
 ## Tools
 
 - `list_endpoints` — free. Lists paid tools, prices (USDC on Base) and HTTP paths.
-- One paid tool per API path (`iban`, `eu_vat`, `fr_company`, …). An unpaid call returns the HTTP 402 challenge. If `EVM_PRIVATE_KEY` is set and `@x402/fetch` is installed, the server retries with a signed x402 v2 payment.
+- One paid tool per catalog path (`iban`, `eu_vat`, `sanctions_check`, …; currently 52). An unpaid call returns the HTTP 402 challenge. If `EVM_PRIVATE_KEY` is set and `@x402/fetch` is installed, the server retries with a signed x402 v2 payment. The hosted remote at the gateway still exposes the original gateway tools only.
 
 ## stdio
 

@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.forge-agent-hub/forge-agent-mcp",
   "title": "Forge Agent Hub",
-  "description": "Pay-per-call APIs for agents (FR/CH company data, VAT, IBAN, FX) via x402 USDC on Base.",
-  "version": "1.0.0",
+  "description": "Pay-per-call APIs via x402 USDC on Base. Hosted MCP: original gateway; stdio: full catalog.",
+  "version": "1.1.0",
   "websiteUrl": "https://agent-hub.dentreprise.workers.dev",
   "repository": {
     "url": "https://github.com/forge-agent-hub/forge-agent-mcp",

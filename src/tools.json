@@ -1,0 +1,1298 @@
+[
+  {
+    "name": "fr_company",
+    "path": "/api/fr-company",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "French company lookup (SIREN/SIRET/name) from the official open-data Sirene base (recherche-entreprises.api.gouv.fr, Licence Ouverte Etalab). Returns legal name, SIREN, HQ address, NAF code, status, creation date, directors when public.",
+    "price": "0.005",
+    "fields": [
+      {
+        "name": "q",
+        "type": "string",
+        "desc": "Company name, SIREN (9 digits) or SIRET (14 digits)",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "eu_vat",
+    "path": "/api/eu-vat",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "EU VAT number validation against the European Commission VIES service, with normalised output (valid, name, address).",
+    "price": "0.003",
+    "fields": [
+      {
+        "name": "vat",
+        "type": "string",
+        "desc": "VAT number with 2-letter country prefix, e.g. FR40303265045",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "iban",
+    "path": "/api/iban",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "IBAN validation (ISO 13616 mod-97 checksum + per-country length), returns normalised IBAN, country and BBAN.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "iban",
+        "type": "string",
+        "desc": "iban",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "markdown",
+    "path": "/api/markdown",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "Fetch a public web page and return clean Markdown (scripts/styles/nav stripped) plus title. Max 2 MB, 15 s timeout, public IPs only.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "http(s) URL of a public page",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "fr_address",
+    "path": "/api/fr-address",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "French address geocoding and normalisation via the official Base Adresse Nationale (api-adresse.data.gouv.fr). Returns normalised label, postcode, city, INSEE code, lat/lon and score.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "q",
+        "type": "string",
+        "desc": "Free-text French address",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "holidays",
+    "path": "/api/holidays",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "Official public holidays for a country and year (100+ countries, Nager.Date open data), plus whether a given date is a holiday.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "country",
+        "type": "string",
+        "desc": "ISO 3166-1 alpha-2 country code",
+        "required": true
+      },
+      {
+        "name": "year",
+        "type": "string",
+        "desc": "4-digit year",
+        "required": false
+      },
+      {
+        "name": "date",
+        "type": "string",
+        "desc": "optional YYYY-MM-DD to test",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "fx",
+    "path": "/api/fx",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "Currency conversion at the official European Central Bank reference rate (via Frankfurter), with rate date. 30+ fiat currencies.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "from",
+        "type": "string",
+        "desc": "from",
+        "required": true
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "desc": "to",
+        "required": true
+      },
+      {
+        "name": "amount",
+        "type": "string",
+        "desc": "amount",
+        "required": false
+      },
+      {
+        "name": "date",
+        "type": "string",
+        "desc": "optional YYYY-MM-DD historical rate",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "web_meta",
+    "path": "/api/web-meta",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "Fetch a public URL and return its metadata: title, meta description, canonical, language, OpenGraph and Twitter card tags, favicon, RSS feeds, h1s. Public IPs only.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "url",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "email_check",
+    "path": "/api/email-check",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "Email address check: RFC syntax, domain MX/A records (deliverability signal, no SMTP probe), disposable-domain and role-account flags.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "email",
+        "type": "string",
+        "desc": "email",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "rdap",
+    "path": "/api/rdap",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "Domain registration data via RDAP (the official WHOIS successor): registrar, creation/expiry/update dates, status, nameservers, DNSSEC, age in days.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "domain",
+        "type": "string",
+        "desc": "domain",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "ch_uid",
+    "path": "/api/ch-uid",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "Swiss UID / VAT (MWST/TVA/IVA) number validation against the official Swiss Federal Statistical Office UID register (UID-Register, uid-wse). Returns format check (mod-11), register status, legal name, legal form, address, commercial-register and VAT status. Sole-proprietor names are masked.",
+    "price": "0.003",
+    "fields": [
+      {
+        "name": "uid",
+        "type": "string",
+        "desc": "Swiss UID, e.g. CHE-105.829.940 or CHE105829940 MWST",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "ch_uid_batch",
+    "path": "/api/ch-uid-batch",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "Batch Swiss UID / VAT number validation (up to 25 numbers per call) against the official Swiss UID register. Same per-record output as /api/ch-uid. The register allows ~20 lookups/min, so a full batch can take up to ~80 s. Sole-proprietor names are masked.",
+    "price": "0.05",
+    "fields": [
+      {
+        "name": "uids",
+        "type": "string",
+        "desc": "Up to 25 Swiss UIDs, comma/space/newline separated (POST may also send a JSON array)",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "dvf_price_m2",
+    "path": "/api/dvf-price-m2",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "French property price per m2 around an address from official DVF sales records (DGFiP / Etalab, last 3 years): median, p25/p75, count for apartments and houses within an auto-expanding radius, geocoded via Base Adresse Nationale. Not available for Alsace-Moselle and Mayotte.",
+    "price": "0.01",
+    "fields": [
+      {
+        "name": "address",
+        "type": "string",
+        "desc": "French street address",
+        "required": true
+      },
+      {
+        "name": "propertyType",
+        "type": "string",
+        "desc": "optional: Appartement or Maison",
+        "required": false
+      },
+      {
+        "name": "surface",
+        "type": "number",
+        "desc": "optional surface in m2 for an estimate",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "bodacc_health",
+    "path": "/api/bodacc-health",
+    "host": "https://x402-gateway.forge-x402.workers.dev",
+    "desc": "French company legal-health check from the official BODACC notices (DILA open data) for a SIREN/SIRET: insolvency proceedings (sauvegarde, redressement, liquidation), deregistration, sales, accounts filings, last notice dates and a risk summary. Natural persons (sole traders) are masked.",
+    "price": "0.003",
+    "fields": [
+      {
+        "name": "siren",
+        "type": "string",
+        "desc": "SIREN (9 digits) or SIRET (14 digits)",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "x402_compliance",
+    "path": "/api/x402-compliance",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "x402 V2 compliance tester: probes any paid endpoint without paying and checks the 402 challenge (PAYMENT-REQUIRED header, x402Version 2, accepts[] schema, CAIP-2 network, atomic amount, canonical USDC asset, payTo, maxTimeoutSeconds, EIP-712 extra, resource, Bazaar extension, CORS) and that free 200s or forged payment headers never unlock the resource. Returns score, verdict and per-check details.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "Paid endpoint URL to test",
+        "required": true
+      },
+      {
+        "name": "method",
+        "type": "string",
+        "desc": "GET (default) or POST",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "a2a_agent_card",
+    "path": "/api/a2a-agent-card",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "A2A Agent Card validator and generator (A2A 1.0, detects and flags v0.3 cards): supportedInterfaces, protocolBinding/protocolVersion, capabilities, media-type modes, skills, provider, security schemes/requirements, JWS signature structure. Validate by URL (fetches /.well-known/agent-card.json) or inline JSON; or mode=generate from name, description, endpoint and skills.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "Agent origin or card URL",
+        "required": false
+      },
+      {
+        "name": "card",
+        "type": "string",
+        "desc": "Inline Agent Card JSON (POST)",
+        "required": false
+      },
+      {
+        "name": "mode",
+        "type": "string",
+        "desc": "validate (default) or generate",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "desc": "generate: agent name",
+        "required": false
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "desc": "generate: description",
+        "required": false
+      },
+      {
+        "name": "endpoint",
+        "type": "string",
+        "desc": "generate: A2A endpoint https URL",
+        "required": false
+      },
+      {
+        "name": "skills",
+        "type": "string",
+        "desc": "generate: JSON array or comma-separated skill names",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "mcp_manifest_lint",
+    "path": "/api/mcp-manifest-lint",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "MCP manifest linter: validates an MCP registry server.json (official schema 2025-12-11: reverse-DNS name, 100-char description, pinned versions, packages registryType/transport, remotes, env vars, isSecret, fileSha256, additionalProperties) or a host config (mcpServers/servers: command vs url, args, env, hard-coded secrets). Inline JSON or URL.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "URL of server.json or config",
+        "required": false
+      },
+      {
+        "name": "manifest",
+        "type": "string",
+        "desc": "Inline server.json or host config (POST)",
+        "required": false
+      },
+      {
+        "name": "kind",
+        "type": "string",
+        "desc": "server_json or host_config (auto-detected)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "x402_manifest_from_openapi",
+    "path": "/api/x402-manifest-from-openapi",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Turn an OpenAPI 3.x / Swagger 2.0 spec (JSON or YAML, URL or inline) into a ready-to-mount x402 V2 paywall: per-operation accepts[] (exact, CAIP-2 network, atomic USDC amount, payTo, EIP-712 extra), @x402/core route config, Bazaar discovery input/output schemas, a /.well-known/x402 document and a sample PAYMENT-REQUIRED payload.",
+    "price": "0.003",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "OpenAPI URL",
+        "required": false
+      },
+      {
+        "name": "spec",
+        "type": "string",
+        "desc": "Inline spec (POST)",
+        "required": false
+      },
+      {
+        "name": "payTo",
+        "type": "string",
+        "desc": "Receiving address",
+        "required": true
+      },
+      {
+        "name": "price",
+        "type": "string",
+        "desc": "Default USD price per call",
+        "required": false
+      },
+      {
+        "name": "prices",
+        "type": "string",
+        "desc": "JSON map {\"GET /path\": 0.002}",
+        "required": false
+      },
+      {
+        "name": "network",
+        "type": "string",
+        "desc": "CAIP-2, default eip155:8453",
+        "required": false
+      },
+      {
+        "name": "base_url",
+        "type": "string",
+        "desc": "Override server URL",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "pubmed_search",
+    "path": "/api/pubmed-search",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "PubMed / MEDLINE search with full records: PMID, title, authors, journal, year, volume/pages, DOI, PMCID, publication types, MeSH terms and abstract. Accepts PubMed query syntax or a list of PMIDs. No API key needed.",
+    "price": "0.003",
+    "fields": [
+      {
+        "name": "q",
+        "type": "string",
+        "desc": "PubMed query",
+        "required": false
+      },
+      {
+        "name": "pmid",
+        "type": "string",
+        "desc": "Comma-separated PMIDs (alternative to q)",
+        "required": false
+      },
+      {
+        "name": "max",
+        "type": "string",
+        "desc": "1-20, default 5",
+        "required": false
+      },
+      {
+        "name": "sort",
+        "type": "string",
+        "desc": "relevance or pub_date",
+        "required": false
+      },
+      {
+        "name": "abstracts",
+        "type": "string",
+        "desc": "true/false, default true",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "x402_listing_check",
+    "path": "/api/x402-listing-check",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Checks that a host exposes a valid x402 discovery listing (/.well-known/x402, x402.json, x402-listing): JSON, version, https resource URLs, same host, companions (/openapi.json, /llms.txt), and probes up to 10 listed resources for a real 402 challenge with consistent payTo. Never pays.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "Host or origin URL",
+        "required": true
+      },
+      {
+        "name": "probe",
+        "type": "string",
+        "desc": "Resources to probe, 0-10, default 5",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "lei_lookup",
+    "path": "/api/lei-lookup",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Legal Entity Identifier lookup from the official GLEIF register: by LEI (with ISO 17442 checksum check) or by legal-name search with optional country. Returns legal name, status, legal form, jurisdiction, legal and HQ addresses, registration status/renewal, BIC, direct and ultimate parents.",
+    "price": "0.003",
+    "fields": [
+      {
+        "name": "lei",
+        "type": "string",
+        "desc": "20-char LEI",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "desc": "Legal name search (alternative)",
+        "required": false
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "desc": "ISO alpha-2 filter for name search",
+        "required": false
+      },
+      {
+        "name": "max",
+        "type": "string",
+        "desc": "1-20",
+        "required": false
+      },
+      {
+        "name": "relationships",
+        "type": "string",
+        "desc": "true/false, default true",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "rss_to_json",
+    "path": "/api/rss-to-json",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "RSS 2.0 / RSS 1.0 (RDF) / Atom / JSON Feed to clean JSON: feed title, link, language, updated, items with id, title, link, ISO dates, author, text summary, categories and enclosures (podcasts). URL or inline XML, item cap, `since` filter; HTML pages return discovered feed links.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "Feed URL",
+        "required": false
+      },
+      {
+        "name": "xml",
+        "type": "string",
+        "desc": "Inline feed (POST)",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "string",
+        "desc": "1-100, default 20",
+        "required": false
+      },
+      {
+        "name": "since",
+        "type": "string",
+        "desc": "ISO date: only newer items",
+        "required": false
+      },
+      {
+        "name": "html",
+        "type": "string",
+        "desc": "keep HTML in summaries",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "eori_validate",
+    "path": "/api/eori-validate",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "EORI number validation (customs trader ID) against the official European Commission EOS register, and UK GB numbers against HMRC. Up to 10 numbers per call; returns validity plus name and address when the trader consented to publication.",
+    "price": "0.003",
+    "fields": [
+      {
+        "name": "eori",
+        "type": "string",
+        "desc": "EORI number(s), comma-separated, max 10",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "sec_financials",
+    "path": "/api/sec-financials",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "US public company financial facts from SEC EDGAR XBRL (by ticker or CIK): revenue, net income, operating income, gross profit, diluted EPS, assets, liabilities, equity, cash, operating cash flow, long-term debt, shares outstanding — last 1-5 fiscal years plus latest quarter, with form, filing date and accession; plus recent 10-K/10-Q/8-K filings. Any raw us-gaap tag also accepted.",
+    "price": "0.005",
+    "fields": [
+      {
+        "name": "ticker",
+        "type": "string",
+        "desc": "Ticker, e.g. AAPL",
+        "required": false
+      },
+      {
+        "name": "cik",
+        "type": "string",
+        "desc": "SEC CIK (alternative)",
+        "required": false
+      },
+      {
+        "name": "years",
+        "type": "string",
+        "desc": "1-5, default 3",
+        "required": false
+      },
+      {
+        "name": "metrics",
+        "type": "string",
+        "desc": "Comma list: revenue,net_income,… or us-gaap:Tag",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "openfoodfacts_product",
+    "path": "/api/openfoodfacts-product",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Food product sheet from a barcode (EAN/UPC/GTIN) via Open Food Facts: name, brand, quantity, Nutri-Score, NOVA, Eco-Score, nutriments per 100 g, ingredients, allergens, traces, labels, categories, countries, packaging, image.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "barcode",
+        "type": "string",
+        "desc": "8-14 digit barcode",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "arxiv_search",
+    "path": "/api/arxiv-search",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "arXiv preprint search (plain words or arXiv field syntax ti:, au:, abs:, cat:) or id lookup: title, authors, dates, categories, abstract, DOI, journal ref, abs and PDF links.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "q",
+        "type": "string",
+        "desc": "Query",
+        "required": false
+      },
+      {
+        "name": "id",
+        "type": "string",
+        "desc": "arXiv id(s), comma-separated",
+        "required": false
+      },
+      {
+        "name": "max",
+        "type": "string",
+        "desc": "1-25, default 5",
+        "required": false
+      },
+      {
+        "name": "sort",
+        "type": "string",
+        "desc": "relevance, submitted, updated",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "crossref_doi",
+    "path": "/api/crossref-doi",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "DOI metadata from Crossref: type, title, container (journal/book), publisher, authors with ORCID and affiliations, dates, volume/issue/pages, ISSN/ISBN, licenses, abstract, subjects, citation counts, funders, and optionally the reference list.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "doi",
+        "type": "string",
+        "desc": "DOI or doi.org URL",
+        "required": true
+      },
+      {
+        "name": "references",
+        "type": "string",
+        "desc": "true to include references",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "gtin_validate",
+    "path": "/api/gtin-validate",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "GTIN / EAN-8 / EAN-13 / UPC-A / UPC-E / GTIN-14 validation and normalisation (GS1 check digit): type, expected check digit, corrected code, GTIN-14 and EAN-13 forms, GS1 prefix region, book/coupon flags. Up to 100 codes per call.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "gtin",
+        "type": "string",
+        "desc": "Code(s), comma-separated",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "isbn_validate",
+    "path": "/api/isbn-validate",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "ISBN-10 / ISBN-13 validation and conversion (ISO 2108 check digits): valid flag, expected check digit, corrected value, both forms, GTIN-14, registration group hint.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "isbn",
+        "type": "string",
+        "desc": "ISBN-10 or ISBN-13",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "mcp_inspect",
+    "path": "/api/mcp-inspect",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Remote MCP server inspector (Streamable HTTP): initialize handshake, protocol version, serverInfo, capabilities, session, latency, tools/list with per-tool checks (name pattern, description, inputSchema object, undocumented or missing required params), resources/prompts counts. Read-only: never calls a tool.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "MCP endpoint URL",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "openapi_lint",
+    "path": "/api/openapi-lint",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "OpenAPI linter for agent readiness: version, info, servers, operationId presence/uniqueness/LLM-safe names, summaries, parameter schemas and descriptions, path placeholders, success and error responses, JSON examples. Returns an agent-readiness score and actionable issues.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "Spec URL",
+        "required": false
+      },
+      {
+        "name": "spec",
+        "type": "string",
+        "desc": "Inline spec (POST)",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "sitemap_urls",
+    "path": "/api/sitemap-urls",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "sitemap.xml URL extractor: reads a sitemap or sitemap index (incl. .gz) and up to 10 child sitemaps, returns URLs with lastmod/changefreq/priority, optional substring filter, capped list (up to 5000).",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "Sitemap URL or site origin",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "string",
+        "desc": "1-5000, default 500",
+        "required": false
+      },
+      {
+        "name": "max_children",
+        "type": "string",
+        "desc": "0-10, default 5",
+        "required": false
+      },
+      {
+        "name": "contains",
+        "type": "string",
+        "desc": "Only URLs containing this text",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "tz_convert",
+    "path": "/api/tz-convert",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "IANA time zone conversion: an instant (ISO with offset, Z, or Unix) or a local wall time in a source zone converted to up to 20 zones, with UTC offset, abbreviation and DST gap/overlap handling (ambiguous times return both instants).",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "time",
+        "type": "string",
+        "desc": "ISO date-time or local time; default now",
+        "required": false
+      },
+      {
+        "name": "from",
+        "type": "string",
+        "desc": "Source IANA zone for local times, default UTC",
+        "required": false
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "desc": "Target zones, comma-separated",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "uuid_v7",
+    "path": "/api/uuid-v7",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "RFC 9562 UUIDv7 generator (time-sortable, 1-100 per call, optional timestamp) and UUID validator/decoder (version, variant, embedded timestamp for v1/v7).",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "count",
+        "type": "string",
+        "desc": "1-100",
+        "required": false
+      },
+      {
+        "name": "timestamp",
+        "type": "string",
+        "desc": "ISO date for the time part",
+        "required": false
+      },
+      {
+        "name": "uuid",
+        "type": "string",
+        "desc": "UUID to validate/decode instead",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "siren_check",
+    "path": "/api/siren-check",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "French SIREN (9) / SIRET (14) checksum validation (Luhn, La Poste exception), formatting, NIC, and the derived intra-EU VAT number. Up to 100 numbers. Offline: no register call.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "siren",
+        "type": "string",
+        "desc": "SIREN/SIRET number(s), comma-separated",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "phone_parse",
+    "path": "/api/phone-parse",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Phone number parsing and validation to E.164 (libphonenumber numbering plans): validity, country, calling code, type (mobile, fixed line, toll-free…), national/international formats, tel: URI. Up to 50 numbers. No carrier lookup, no call.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "phone",
+        "type": "string",
+        "desc": "Number(s); separate with ; or newline",
+        "required": true
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "desc": "Default ISO country for national numbers",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "x402_facilitator_health",
+    "path": "/api/x402-facilitator-health",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "x402 facilitator health check: calls GET /supported on a facilitator (or on a default list incl. CDP, xpay, x402.org, PayAI), reports alive/auth-required, latency, supported kinds (version, scheme, network), V2 and network support, and flags deprecated URLs.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "Facilitator base URL (optional)",
+        "required": false
+      },
+      {
+        "name": "network",
+        "type": "string",
+        "desc": "CAIP-2 network to check, default eip155:8453",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "json_schema_validate",
+    "path": "/api/json-schema-validate",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Validate LLM/agent JSON output against a JSON Schema (2020-12 subset) and auto-repair typical errors: code fences, trailing commas, numbers/booleans as strings, wrong enum case, single value instead of array, null optionals, extra or mis-cased keys, missing defaults. Returns errors, repaired JSON and fixes. POST recommended.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "schema",
+        "type": "string",
+        "desc": "JSON Schema",
+        "required": true
+      },
+      {
+        "name": "data",
+        "type": "string",
+        "desc": "JSON value or string to check",
+        "required": true
+      },
+      {
+        "name": "repair",
+        "type": "string",
+        "desc": "true (default) / false",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "wikidata_entity",
+    "path": "/api/wikidata-entity",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Wikidata entity lookup by Q-id or search text: label, description, aliases in a chosen language, key claims (instance of, country, coordinates, inception, website, population, HQ, founders, industry, identifiers such as LEI/ticker/ISNI…) with resolved labels, Wikipedia link.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "id",
+        "type": "string",
+        "desc": "Q-id",
+        "required": false
+      },
+      {
+        "name": "q",
+        "type": "string",
+        "desc": "Search text (alternative)",
+        "required": false
+      },
+      {
+        "name": "lang",
+        "type": "string",
+        "desc": "Language code, default en",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "fr_communes",
+    "path": "/api/fr-communes",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "French municipalities (INSEE COG) by name, postcode or INSEE code: official name, INSEE code, postcodes, population, area, department, region, EPCI, SIREN, centre coordinates.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "desc": "Commune name",
+        "required": false
+      },
+      {
+        "name": "postcode",
+        "type": "string",
+        "desc": "5-digit postcode",
+        "required": false
+      },
+      {
+        "name": "insee",
+        "type": "string",
+        "desc": "5-char INSEE code",
+        "required": false
+      },
+      {
+        "name": "limit",
+        "type": "string",
+        "desc": "1-20",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "fx_history",
+    "path": "/api/fx-history",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Official ECB reference-rate time series for a currency pair (or up to 10 targets) over a date range up to 2 years: daily points plus first/last/min/max/mean/% change.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "from",
+        "type": "string",
+        "desc": "Base ISO 4217, default EUR",
+        "required": false
+      },
+      {
+        "name": "to",
+        "type": "string",
+        "desc": "Target(s), comma-separated",
+        "required": true
+      },
+      {
+        "name": "start",
+        "type": "string",
+        "desc": "YYYY-MM-DD",
+        "required": true
+      },
+      {
+        "name": "end",
+        "type": "string",
+        "desc": "YYYY-MM-DD, default today",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "fr_school_calendar",
+    "path": "/api/fr-school-calendar",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "French school holidays (calendrier scolaire, Éducation nationale) by school year and zone A/B/C (or overseas/Corsica), with académies, start/end dates, and an optional date test (is this date a school holiday, and where).",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "zone",
+        "type": "string",
+        "desc": "A, B, C or overseas zone",
+        "required": false
+      },
+      {
+        "name": "year",
+        "type": "string",
+        "desc": "School year e.g. 2026-2027",
+        "required": false
+      },
+      {
+        "name": "date",
+        "type": "string",
+        "desc": "YYYY-MM-DD to test",
+        "required": false
+      },
+      {
+        "name": "academie",
+        "type": "string",
+        "desc": "Académie name filter",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "openapi_to_mcp",
+    "path": "/api/openapi-to-mcp",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Convert an OpenAPI spec (JSON/YAML, URL or inline) into MCP tool definitions: LLM-safe unique names, descriptions, JSON Schema inputSchema (query/path/header params + JSON body), MCP annotations (readOnly/destructive/idempotent), plus HTTP forwarding hints and a ready tools/list response.",
+    "price": "0.003",
+    "fields": [
+      {
+        "name": "url",
+        "type": "string",
+        "desc": "Spec URL",
+        "required": false
+      },
+      {
+        "name": "spec",
+        "type": "string",
+        "desc": "Inline spec (POST)",
+        "required": false
+      },
+      {
+        "name": "base_url",
+        "type": "string",
+        "desc": "Override server URL",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "sanctions_check",
+    "path": "/api/sanctions-check",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Sanctions screening of a person, company or vessel name against the US Consolidated Screening List (OFAC SDN with aliases plus other Treasury, Commerce BIS and State lists), the EU consolidated financial sanctions list (FSF), the French national asset-freeze register (DG Trésor) and the UK sanctions list (FCDO). Fuzzy Jaro-Winkler token matching with score, programmes, DOB; lists refreshed daily.",
+    "price": "0.005",
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "desc": "Name to screen",
+        "required": true
+      },
+      {
+        "name": "type",
+        "type": "string",
+        "desc": "person, entity or vessel (optional)",
+        "required": false
+      },
+      {
+        "name": "lists",
+        "type": "string",
+        "desc": "ofac,eu,fr,uk (default all)",
+        "required": false
+      },
+      {
+        "name": "threshold",
+        "type": "string",
+        "desc": "0.7-1, default 0.88",
+        "required": false
+      },
+      {
+        "name": "max",
+        "type": "string",
+        "desc": "1-50",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "fr_legal_status",
+    "path": "/api/fr-legal-status",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "French company legal status by SIREN/SIRET: Sirene administrative status (active/ceased, closure date, legal form, NAF, head office) plus BODACC collective proceedings (sauvegarde, redressement, liquidation judiciaire, clôture) with latest stage, ongoing flag and risk level.",
+    "price": "0.003",
+    "fields": [
+      {
+        "name": "siren",
+        "type": "string",
+        "desc": "SIREN or SIRET",
+        "required": true
+      },
+      {
+        "name": "max",
+        "type": "string",
+        "desc": "notices 1-50",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "eu_tenders",
+    "path": "/api/eu-tenders",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Public tender scanner: keyword search across BOAMP (France) and TED (EU Official Journal, all member states) since a date, merged and sorted: title, buyer, publication date, deadline, notice type, country, CPV codes and link.",
+    "price": "0.003",
+    "fields": [
+      {
+        "name": "q",
+        "type": "string",
+        "desc": "Keywords",
+        "required": true
+      },
+      {
+        "name": "since",
+        "type": "string",
+        "desc": "YYYY-MM-DD, default 30 days ago",
+        "required": false
+      },
+      {
+        "name": "sources",
+        "type": "string",
+        "desc": "boamp,ted",
+        "required": false
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "desc": "TED buyer country ISO alpha-3, e.g. DEU",
+        "required": false
+      },
+      {
+        "name": "max",
+        "type": "string",
+        "desc": "1-50 per source",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "uk_postcode",
+    "path": "/api/uk-postcode",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "UK postcode lookup and validation (postcodes.io, ONS/OS open data): country, region, district, ward, parish, constituency, lat/lon, eastings/northings, NUTS; terminated postcodes detected; reverse lookup from lat/lon.",
+    "price": "0.001",
+    "fields": [
+      {
+        "name": "postcode",
+        "type": "string",
+        "desc": "UK postcode",
+        "required": false
+      },
+      {
+        "name": "lat",
+        "type": "string",
+        "desc": "reverse: latitude",
+        "required": false
+      },
+      {
+        "name": "lon",
+        "type": "string",
+        "desc": "reverse: longitude",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "eu_address",
+    "path": "/api/eu-address",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Address geocoding and normalisation through official national open services: France (Base Adresse Nationale), Netherlands (PDOK/BAG), Spain (CartoCiudad/IGN), Switzerland (swisstopo). Returns normalised label, street, number, postcode, city, region, coordinates and score.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "address",
+        "type": "string",
+        "desc": "Free-text address",
+        "required": true
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "desc": "FR, NL, ES or CH",
+        "required": true
+      },
+      {
+        "name": "limit",
+        "type": "string",
+        "desc": "1-10",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "no_company",
+    "path": "/api/no-company",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Norwegian company register (Brønnøysundregistrene) by org number or name: legal form, registration and founding dates, VAT registration and VAT number, bankruptcy, liquidation and forced-dissolution flags, employees, industry, address, website.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "orgnr",
+        "type": "string",
+        "desc": "9-digit org number",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "desc": "Name search",
+        "required": false
+      },
+      {
+        "name": "max",
+        "type": "string",
+        "desc": "1-20",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "fi_company",
+    "path": "/api/fi-company",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Finnish company register (PRH / YTJ open data) by Business ID (Y-tunnus) or name: current name, registration date, legal form, status, trade-register status, main business line, address, website, EUID and derived VAT number.",
+    "price": "0.002",
+    "fields": [
+      {
+        "name": "business_id",
+        "type": "string",
+        "desc": "Y-tunnus 1234567-8",
+        "required": false
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "desc": "Name search",
+        "required": false
+      },
+      {
+        "name": "max",
+        "type": "string",
+        "desc": "1-20",
+        "required": false
+      }
+    ]
+  },
+  {
+    "name": "kyb_check_fr",
+    "path": "/api/kyb-check-fr",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "One-call KYB for a French company (SIREN/SIRET): Sirene identity and status, BODACC collective proceedings, VIES intra-EU VAT validity (derived FR number) and sanctions screening (OFAC, EU, FR, UK) of the legal name, with a pass/review/fail verdict and flags.",
+    "price": "0.01",
+    "fields": [
+      {
+        "name": "siren",
+        "type": "string",
+        "desc": "SIREN or SIRET",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "supplier_due_diligence",
+    "path": "/api/supplier-due-diligence",
+    "host": "https://forge-tools.dentreprise.workers.dev",
+    "desc": "Supplier due diligence for any company name (optionally VAT number and country): VIES VAT check, GLEIF LEI candidates with entity and registration status, and sanctions screening (OFAC, EU, FR, UK), with a pass/review/fail verdict and flags.",
+    "price": "0.01",
+    "fields": [
+      {
+        "name": "name",
+        "type": "string",
+        "desc": "Company name",
+        "required": true
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "desc": "ISO alpha-2",
+        "required": false
+      },
+      {
+        "name": "vat",
+        "type": "string",
+        "desc": "EU VAT number (optional)",
+        "required": false
+      }
+    ]
+  }
+]
